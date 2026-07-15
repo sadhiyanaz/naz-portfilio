@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Sadiya Naz | Portfolio | Data Science Enthusiast</title>
+    <meta name="description" content="Portfolio of Sadiya Naz, a Data Science and Machine Learning Enthusiast. Turning raw data into meaningful insights through analytics, computer vision, and machine learning." />
+    <meta name="keywords" content="Sadiya Naz, Data Science, Machine Learning, Data Analyst, Computer Vision, Portfolio, Maharaja Institute of Technology Thandavapura, VTU, Python, Tableau, Power BI" />
+    <meta name="author" content="Sadiya Naz" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              apple: {
+                blue: '#0071E3',
+                darkBg: '#1D1D1F',
+                lightBg: '#F5F5F7',
+                gray: '#86868B',
+                darkGray: '#424245',
+                border: '#D2D2D7',
+                darkBorder: '#333336'
+              }
+            },
+            fontFamily: {
+              sans: ['SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Inter', 'Outfit', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-apple-lightBg dark:bg-apple-darkBg text-black dark:text-white transition-colors duration-300 font-sans antialiased overflow-x-hidden">
+    
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-8 right-8 z-50 flex flex-col gap-3"></div>
+
+    <!-- Apple-style Loading Screen -->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#161617] transition-opacity duration-500">
+      <div class="flex flex-col items-center max-w-xs w-full px-6">
+        <div class="text-white text-lg font-bold tracking-[0.5em] uppercase mb-10 text-center select-none animate-pulse-subtle">
+          SADIYA NAZ
+        </div>
+        <div class="w-48 h-[2px] bg-neutral-800 rounded-full overflow-hidden relative">
+          <div id="loader-progress" class="h-full bg-neutral-300 rounded-full w-0 transition-all duration-75"></div>
+        </div>
+        <span id="loader-percentage" class="text-xs text-neutral-400 font-mono mt-3 opacity-50">0%</span>
+      </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-[3px] bg-neutral-200/20 dark:bg-neutral-800/20 z-50 pointer-events-none">
+      <div id="scroll-progress" class="h-full bg-apple-blue w-0 transition-all duration-75"></div>
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-5 bg-transparent border-b border-transparent">
+      <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#home" class="font-semibold text-lg tracking-tight hover:text-apple-blue transition-colors flex items-center gap-1.5 nav-link">
+          <span class="w-2.5 h-2.5 rounded-full bg-apple-blue animate-pulse-subtle"></span>
+          Sadiya Naz
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#home" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link font-semibold active-link" data-section="home">Home</a>
+          <a href="#about" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="about">About</a>
+          <a href="#skills" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="skills">Skills</a>
+          <a href="#projects" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="projects">Projects</a>
+          <a href="#education" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="education">Education</a>
+          <a href="#certificates" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="certificates">Certificates</a>
+          <a href="#contact" class="text-xs uppercase tracking-widest text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white transition-colors duration-200 nav-link" data-section="contact">Contact</a>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="p-1.5 rounded-full hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors text-neutral-600 dark:text-neutral-300" aria-label="Toggle Theme">
+            <i data-lucide="moon" class="w-[18px] h-[18px] dark:hidden"></i>
+            <i data-lucide="sun" class="w-[18px] h-[18px] hidden dark:block"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Toggles -->
+        <div class="flex md:hidden items-center gap-4">
+          <button id="theme-toggle-mobile" class="p-1.5 rounded-full hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors text-neutral-600 dark:text-neutral-300" aria-label="Toggle Theme">
+            <i data-lucide="moon" class="w-[18px] h-[18px] dark:hidden"></i>
+            <i data-lucide="sun" class="w-[18px] h-[18px] hidden dark:block"></i>
+          </button>
+          
+          <button id="mobile-menu-toggle" class="p-1 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors" aria-label="Toggle Menu">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Drawer -->
+      <div id="mobile-menu" class="hidden fixed inset-x-0 top-0 pt-20 pb-8 z-30 glass-nav-light dark:glass-nav-dark shadow-lg">
+        <div class="flex flex-col items-center gap-5 px-6">
+          <a href="#home" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Home</a>
+          <a href="#about" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">About</a>
+          <a href="#skills" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Skills</a>
+          <a href="#projects" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Projects</a>
+          <a href="#education" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Education</a>
+          <a href="#certificates" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Certificates</a>
+          <a href="#contact" class="mobile-nav-link text-sm font-medium tracking-wide text-neutral-600 hover:text-apple-blue dark:text-neutral-300 dark:hover:text-apple-blue transition-colors py-2 w-full text-center">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      
+      <!-- Hero Section -->
+      <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 section-fade">
+        <div class="absolute inset-0 z-0">
+          <div class="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-blue-400/20 dark:bg-blue-500/10 blur-[80px] animate-blob"></div>
+          <div class="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full bg-purple-400/20 dark:bg-purple-500/10 blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+          <!-- Text Details -->
+          <div class="lg:col-span-7 text-center lg:text-left flex flex-col justify-center">
+            <p class="text-apple-blue font-bold text-xl md:text-2xl tracking-wide mb-3 animate-fade-in-up">Hi, I'm</p>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-[100px] xl:text-[110px] font-black tracking-tighter mb-4 text-neutral-900 dark:text-white leading-[0.95] animate-fade-in-up" style="animation-delay: 0.1s;">
+              Sadiya Naz
+            </h1>
+
+            <div class="h-12 md:h-16 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-neutral-700 dark:text-neutral-200 mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+              <span id="typewriter"></span><span class="react-type-animation-cursor::after"></span>
+            </div>
+
+            <p class="text-lg sm:text-xl md:text-2xl text-neutral-500 dark:text-neutral-400 max-w-2xl mb-12 leading-relaxed font-light animate-fade-in-up" style="animation-delay: 0.3s;">
+              Turning Data into Meaningful Insights Through Analytics and Machine Learning.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 0.4s;">
+              <a href="#projects" class="group bg-apple-blue hover:bg-blue-600 text-white font-semibold text-base px-8 py-4 rounded-full flex items-center justify-center gap-2 shadow-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+                Explore My Work
+                <i data-lucide="arrow-right" class="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform"></i>
+              </a>
+
+              <a href="./assets/resume.pdf" download="Sadiya_Naz_Resume.pdf" class="bg-neutral-200/80 hover:bg-neutral-200 dark:bg-neutral-800/80 dark:hover:bg-neutral-800 text-neutral-800 dark:text-white font-semibold text-base px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+                <i data-lucide="file-text" class="w-[18px] h-[18px]"></i>
+                Download Resume
+              </a>
+
+              <a href="#contact" class="border border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white font-semibold text-base px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+                <i data-lucide="mail" class="w-[18px] h-[18px]"></i>
+                Contact Me
+              </a>
+            </div>
+          </div>
+
+          <!-- Profile Photo -->
+          <div class="lg:col-span-5 flex justify-center items-center animate-scale-in" style="animation-delay: 0.2s;">
+            <div class="relative">
+              <div class="absolute inset-0 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl"></div>
+              <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full p-3 glass-card-light dark:glass-card-dark flex items-center justify-center z-10 shadow-xl border animate-float">
+                <div class="w-full h-full rounded-full overflow-hidden relative bg-neutral-100 dark:bg-neutral-900">
+                  <img src="./assets/profile.jpg" alt="Sadiya Naz Profile" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="relative py-24 md:py-32 overflow-hidden bg-neutral-50/50 dark:bg-[#1C1C1E]/30 section-fade">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-20">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">About Me</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">My Passion & Journey</h3>
+          </div>
+
+          <div class="glass-card-light dark:glass-card-dark p-10 md:p-14 rounded-3xl border shadow-sm mb-16 text-center md:text-left">
+            <p class="text-xl md:text-2xl lg:text-3xl text-neutral-800 dark:text-neutral-200 leading-relaxed font-light">
+              "I'm a passionate Data Science enthusiast pursuing a Bachelor's degree in Artificial Intelligence and Machine Learning. I enjoy transforming raw data into meaningful insights using analytical tools and visualization techniques. I am passionate about solving real-world problems through data analysis, machine learning, and computer vision while continuously learning emerging technologies."
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card-light dark:glass-card-dark p-8 rounded-2xl border text-center flex flex-col items-center justify-center hover:-translate-y-1.5 transition-transform duration-300 shadow-sm">
+              <div class="mb-5 p-4 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl">
+                <i data-lucide="graduation-cap" class="w-[26px] h-[26px] text-apple-blue"></i>
+              </div>
+              <h4 class="font-bold text-lg mb-2 text-neutral-900 dark:text-white">AI & ML Student</h4>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">Pursuing Bachelor's in Artificial Intelligence & Machine Learning</p>
+            </div>
+
+            <div class="glass-card-light dark:glass-card-dark p-8 rounded-2xl border text-center flex flex-col items-center justify-center hover:-translate-y-1.5 transition-transform duration-300 shadow-sm">
+              <div class="mb-5 p-4 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl">
+                <i data-lucide="bar-chart-2" class="w-[26px] h-[26px] text-purple-500"></i>
+              </div>
+              <h4 class="font-bold text-lg mb-2 text-neutral-900 dark:text-white">Data Analyst</h4>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">Transforming raw numbers into visual data-driven insights</p>
+            </div>
+
+            <div class="glass-card-light dark:glass-card-dark p-8 rounded-2xl border text-center flex flex-col items-center justify-center hover:-translate-y-1.5 transition-transform duration-300 shadow-sm">
+              <div class="mb-5 p-4 bg-neutral-100/50 dark:bg-neutral-800/50 rounded-2xl">
+                <i data-lucide="eye" class="w-[26px] h-[26px] text-pink-500"></i>
+              </div>
+              <h4 class="font-bold text-lg mb-2 text-neutral-900 dark:text-white">Computer Vision</h4>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 font-light leading-relaxed">Extracting semantic representations from facial & expression images</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="relative py-24 md:py-32 overflow-hidden section-fade">
+        <div class="absolute inset-0 z-0">
+          <div class="absolute top-[30%] right-[5%] w-[250px] h-[250px] rounded-full bg-blue-500/5 blur-[70px]"></div>
+          <div class="absolute bottom-[30%] left-[5%] w-[300px] h-[300px] rounded-full bg-purple-500/5 blur-[90px]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-20">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">Capabilities</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">Technical Skillset</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Programming Languages -->
+            <div class="glass-card-light dark:glass-card-dark rounded-3xl border p-8 flex flex-col justify-between overflow-hidden relative group hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <div class="absolute -inset-px bg-gradient-to-br from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
+              <div class="relative z-10">
+                <h4 class="text-lg font-bold mb-8 text-neutral-900 dark:text-white border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4">Programming Languages</h4>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#3776AB]"><i data-lucide="terminal" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Python</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-indigo-500"><i data-lucide="code" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">C</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#007396]"><i data-lucide="coffee" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Java</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Software & Tools -->
+            <div class="glass-card-light dark:glass-card-dark rounded-3xl border p-8 flex flex-col justify-between overflow-hidden relative group hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <div class="absolute -inset-px bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
+              <div class="relative z-10">
+                <h4 class="text-lg font-bold mb-8 text-neutral-900 dark:text-white border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4">Software & Tools</h4>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#E15829]"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">MATLAB</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#217346]"><i data-lucide="file-spreadsheet" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">MS Excel</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#2B579A]"><i data-lucide="file-text" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">MS Word</span>
+                  </div>
+                  <!-- Custom Tableau icon -->
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#E97627] flex items-center justify-center">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M7 7l10 10M7 17L17 7" /></svg>
+                    </div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Tableau</span>
+                  </div>
+                  <!-- Custom PowerBI icon -->
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#F2C811] flex items-center justify-center">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="13" width="3.5" height="7" rx="0.5" /><rect x="10.25" y="8" width="3.5" height="12" rx="0.5" /><rect x="16.5" y="3" width="3.5" height="17" rx="0.5" /></svg>
+                    </div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Power BI</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#F24E1E]"><i data-lucide="layout" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Figma</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Areas of Interest -->
+            <div class="glass-card-light dark:glass-card-dark rounded-3xl border p-8 flex flex-col justify-between overflow-hidden relative group hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <div class="absolute -inset-px bg-gradient-to-br from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
+              <div class="relative z-10">
+                <h4 class="text-lg font-bold mb-8 text-neutral-900 dark:text-white border-b border-neutral-200/50 dark:border-neutral-800/50 pb-4">Areas of Interest</h4>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-[#0071E3]"><i data-lucide="bar-chart" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Data Analysis</span>
+                  </div>
+                  <div class="flex items-center gap-4 p-3.5 bg-neutral-100/40 dark:bg-neutral-900/40 border border-neutral-200/20 dark:border-neutral-800/20 rounded-2xl hover:translate-x-1.5 transition-transform">
+                    <div class="p-2 bg-white dark:bg-neutral-800 rounded-xl shadow-sm text-purple-600"><i data-lucide="eye" class="w-5 h-5"></i></div>
+                    <span class="text-sm font-medium text-neutral-800 dark:text-neutral-200">Computer Vision</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="relative py-24 md:py-32 overflow-hidden bg-neutral-50/30 dark:bg-[#1C1C1E]/20 section-fade">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-20">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">Showcase</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">Featured Projects</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Project 1 -->
+            <div class="glass-card-light dark:glass-card-dark rounded-3xl border p-8 flex flex-col justify-between relative group hover:-translate-y-2.5 transition-transform duration-300 hover:shadow-xl overflow-hidden">
+              <div class="absolute -inset-px bg-gradient-to-br from-blue-500/5 to-indigo-500/5 dark:from-blue-500/10 dark:to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
+              <div class="relative z-10">
+                <div class="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                  <i data-lucide="database" class="w-6 h-6 text-blue-500"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 text-neutral-900 dark:text-white group-hover:text-apple-blue transition-colors">House Rental Management System</h4>
+                <p class="text-sm font-light text-neutral-500 dark:text-neutral-400 mb-8 leading-relaxed">
+                  Developed a web application for managing rental properties, tenants, bookings, and payments. Featuring automated billing computations and tenant details records.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">HTML</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">CSS</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">JavaScript</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">Python</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">MySQL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-card-light dark:glass-card-dark rounded-3xl border p-8 flex flex-col justify-between relative group hover:-translate-y-2.5 transition-transform duration-300 hover:shadow-xl overflow-hidden">
+              <div class="absolute -inset-px bg-gradient-to-br from-purple-500/5 to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
+              <div class="relative z-10">
+                <div class="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                  <i data-lucide="eye" class="w-6 h-6 text-purple-500"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4 text-neutral-900 dark:text-white group-hover:text-apple-blue transition-colors">Automated Gender & Age Group Detection</h4>
+                <p class="text-sm font-light text-neutral-500 dark:text-neutral-400 mb-8 leading-relaxed">
+                  Developed an AI-powered system that detects gender and estimates age groups from facial images using computer vision techniques and deep learning neural models.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">Python</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">OpenCV</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">TensorFlow</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-300 rounded-full">Flask</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="education" class="relative py-24 md:py-32 overflow-hidden bg-white dark:bg-[#1D1D1F] section-fade">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-24">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">Milestones</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">Education History</h3>
+          </div>
+
+          <div class="relative border-l border-neutral-200 dark:border-neutral-800 ml-4 md:ml-12 pl-6 md:pl-10 space-y-16">
+            <!-- BE -->
+            <div class="relative hover-timeline-item">
+              <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[#1D1D1F] border-2 border-apple-blue flex items-center justify-center shadow-sm">
+                <div class="w-1.5 h-1.5 rounded-full bg-apple-blue animate-pulse-subtle"></div>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/10 text-apple-blue font-semibold text-xs rounded-full mb-4">
+                <i data-lucide="calendar" class="w-3 h-3"></i>
+                Expected Graduation: August 2027
+              </div>
+              <div class="glass-card-light dark:glass-card-dark rounded-2xl border p-6 md:p-8 hover:shadow-md transition-shadow">
+                <h4 class="text-xl font-bold text-neutral-900 dark:text-white">Bachelor of Engineering</h4>
+                <h5 class="text-sm font-semibold text-apple-blue mt-1">Artificial Intelligence and Machine Learning</h5>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Maharaja Institute of Technology Thandavapura | <span class="font-medium text-neutral-700 dark:text-neutral-300">VTU, Belagavi</span></span>
+                  </div>
+                  <div class="hidden sm:inline text-neutral-300 dark:text-neutral-700">|</div>
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Thandavapura, Karnataka</span>
+                  </div>
+                </div>
+                <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-4 leading-relaxed font-light">
+                  Focusing on core ML models, Neural Networks, Deep Learning, Image Processing, and advanced algorithms.
+                </p>
+              </div>
+            </div>
+
+            <!-- PUC -->
+            <div class="relative hover-timeline-item">
+              <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[#1D1D1F] border-2 border-apple-blue flex items-center justify-center shadow-sm">
+                <div class="w-1.5 h-1.5 rounded-full bg-apple-blue"></div>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/10 text-apple-blue font-semibold text-xs rounded-full mb-4">
+                <i data-lucide="calendar" class="w-3 h-3"></i>
+                Completed: 2023
+              </div>
+              <div class="glass-card-light dark:glass-card-dark rounded-2xl border p-6 md:p-8 hover:shadow-md transition-shadow">
+                <h4 class="text-xl font-bold text-neutral-900 dark:text-white">Pre-University Course</h4>
+                <h5 class="text-sm font-semibold text-apple-blue mt-1">Science stream (PCMB)</h5>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Government Girls PU College | <span class="font-medium text-neutral-700 dark:text-neutral-300">State Board</span></span>
+                  </div>
+                  <div class="hidden sm:inline text-neutral-300 dark:text-neutral-700">|</div>
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Karnataka, India</span>
+                  </div>
+                </div>
+                <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-4 leading-relaxed font-light">
+                  Completed core secondary education with a major in Physics, Chemistry, Mathematics, and Biology.
+                </p>
+              </div>
+            </div>
+
+            <!-- High School -->
+            <div class="relative hover-timeline-item">
+              <div class="absolute -left-[31px] md:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-[#1D1D1F] border-2 border-apple-blue flex items-center justify-center shadow-sm">
+                <div class="w-1.5 h-1.5 rounded-full bg-apple-blue"></div>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/10 text-apple-blue font-semibold text-xs rounded-full mb-4">
+                <i data-lucide="calendar" class="w-3 h-3"></i>
+                Completed: 2021
+              </div>
+              <div class="glass-card-light dark:glass-card-dark rounded-2xl border p-6 md:p-8 hover:shadow-md transition-shadow">
+                <h4 class="text-xl font-bold text-neutral-900 dark:text-white">Secondary School</h4>
+                <h5 class="text-sm font-semibold text-apple-blue mt-1">SSLC / General Science</h5>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 text-xs text-neutral-500 dark:text-neutral-400 font-light">
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Government Girls High School | <span class="font-medium text-neutral-700 dark:text-neutral-300">State Board</span></span>
+                  </div>
+                  <div class="hidden sm:inline text-neutral-300 dark:text-neutral-700">|</div>
+                  <div class="flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-neutral-400"></i>
+                    <span>Karnataka, India</span>
+                  </div>
+                </div>
+                <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-4 leading-relaxed font-light">
+                  Foundation study with honors in mathematics, science, and languages.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificates Section -->
+      <section id="certificates" class="relative py-24 md:py-32 overflow-hidden bg-neutral-50/50 dark:bg-[#1C1C1E]/30 section-fade">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-20">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">Credentials</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">Certifications</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cert 1 -->
+            <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 shadow-sm">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <div class="p-3 bg-neutral-100/60 dark:bg-neutral-800/60 rounded-2xl flex items-center justify-center shadow-inner">
+                    <i data-lucide="cpu" class="w-6 h-6 text-blue-500"></i>
+                  </div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400 rounded-full">AI/ML Core</span>
+                </div>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mb-2 leading-snug">Fundamentals of AI & ML</h4>
+                <p class="text-xs font-semibold text-apple-blue mb-4">Infosys Springboard</p>
+                <p class="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+                  Comprehensive foundation of machine learning models, training algorithms, and AI development systems.
+                </p>
+              </div>
+            </div>
+
+            <!-- Cert 2 -->
+            <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 shadow-sm">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <div class="p-3 bg-neutral-100/60 dark:bg-neutral-800/60 rounded-2xl flex items-center justify-center shadow-inner">
+                    <i data-lucide="globe" class="w-6 h-6 text-emerald-500"></i>
+                  </div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400 rounded-full">Geospatial</span>
+                </div>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mb-2 leading-snug">AIML for Geodata Analysis</h4>
+                <p class="text-xs font-semibold text-apple-blue mb-4">ISRO Dehradun</p>
+                <p class="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+                  Utilizing geospatial intelligence datasets, spatial maps, and applying ML algorithms to earth observation telemetry.
+                </p>
+              </div>
+            </div>
+
+            <!-- Cert 3 -->
+            <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 shadow-sm">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <div class="p-3 bg-neutral-100/60 dark:bg-neutral-800/60 rounded-2xl flex items-center justify-center shadow-inner">
+                    <i data-lucide="lightbulb" class="w-6 h-6 text-amber-500"></i>
+                  </div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400 rounded-full">Design Thinking</span>
+                </div>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mb-2 leading-snug">Design Thinking & Community-Based Design</h4>
+                <p class="text-xs font-semibold text-apple-blue mb-4">IUCEE Foundation</p>
+                <p class="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+                  User-centric problem solving methodology applying design workflows to local community solutions.
+                </p>
+              </div>
+            </div>
+
+            <!-- Cert 4 -->
+            <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 shadow-sm">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <div class="p-3 bg-neutral-100/60 dark:bg-neutral-800/60 rounded-2xl flex items-center justify-center shadow-inner">
+                    <i data-lucide="brain" class="w-6 h-6 text-purple-500"></i>
+                  </div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400 rounded-full">Applied ML</span>
+                </div>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mb-2 leading-snug">Machine Learning for Engineering and Science Applications</h4>
+                <p class="text-xs font-semibold text-apple-blue mb-4">NPTEL</p>
+                <p class="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+                  Advanced mathematical modeling, regression systems, clustering, and scientific predictive frameworks.
+                </p>
+              </div>
+            </div>
+
+            <!-- Cert 5 -->
+            <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 shadow-sm">
+              <div>
+                <div class="flex justify-between items-start mb-6">
+                  <div class="p-3 bg-neutral-100/60 dark:bg-neutral-800/60 rounded-2xl flex items-center justify-center shadow-inner">
+                    <i data-lucide="cloud" class="w-6 h-6 text-sky-500"></i>
+                  </div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 bg-neutral-200/50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400 rounded-full">Cloud Engineer</span>
+                </div>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mb-2 leading-snug">Google Cloud Career Launchpad</h4>
+                <p class="text-xs font-semibold text-apple-blue mb-4">Cloud Engineer Track</p>
+                <p class="text-xs font-light text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+                  Cloud infrastructure provisioning, IAM roles, deployment containers, and modern cloud database scaling.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="relative py-24 md:py-32 overflow-hidden bg-neutral-50/30 dark:bg-[#1C1C1E]/20 section-fade">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+          <div class="text-center mb-20">
+            <h2 class="text-sm uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-bold mb-4">Get In Touch</h2>
+            <h3 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-white">Contact Information</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <!-- Details Column -->
+            <div class="md:col-span-5 flex flex-col justify-center">
+              <div class="space-y-6">
+                <h4 class="text-xl font-bold text-neutral-900 dark:text-white mb-6">Sadiya Naz</h4>
+                
+                <a href="mailto:sadiyanaz768@gmail.com" class="flex items-center gap-4 p-4 glass-card-light dark:glass-card-dark border rounded-2xl hover:scale-[1.02] transition-transform duration-300 shadow-sm">
+                  <div class="p-3 bg-white dark:bg-neutral-800 rounded-xl shadow-inner flex items-center justify-center">
+                    <i data-lucide="mail" class="text-apple-blue w-[20px] h-[20px]"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500">Email</p>
+                    <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">sadiyanaz768@gmail.com</p>
+                  </div>
+                </a>
+
+                <a href="tel:+917204770720" class="flex items-center gap-4 p-4 glass-card-light dark:glass-card-dark border rounded-2xl hover:scale-[1.02] transition-transform duration-300 shadow-sm">
+                  <div class="p-3 bg-white dark:bg-neutral-800 rounded-xl shadow-inner flex items-center justify-center">
+                    <i data-lucide="phone" class="text-emerald-500 w-[20px] h-[20px]"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500">Phone</p>
+                    <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">+91 7204770720</p>
+                  </div>
+                </a>
+
+                <a href="https://maps.google.com/?q=Mysuru,Karnataka" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 glass-card-light dark:glass-card-dark border rounded-2xl hover:scale-[1.02] transition-transform duration-300 shadow-sm">
+                  <div class="p-3 bg-white dark:bg-neutral-800 rounded-xl shadow-inner flex items-center justify-center">
+                    <i data-lucide="map-pin" class="text-pink-500 w-[20px] h-[20px]"></i>
+                  </div>
+                  <div>
+                    <p class="text-[10px] uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500">Location</p>
+                    <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">Mysuru, Karnataka</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Form Column -->
+            <div class="md:col-span-7">
+              <div class="glass-card-light dark:glass-card-dark border rounded-3xl p-8 shadow-md">
+                <form id="contact-form" class="space-y-6">
+                  <div>
+                    <label for="user_name" class="block text-xs uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">Your Name</label>
+                    <input type="text" id="user_name" name="user_name" class="w-full bg-neutral-100/50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-apple-blue transition-colors text-neutral-900 dark:text-white" placeholder="John Doe" required />
+                  </div>
+
+                  <div>
+                    <label for="user_email" class="block text-xs uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">Your Email</label>
+                    <input type="email" id="user_email" name="user_email" class="w-full bg-neutral-100/50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-apple-blue transition-colors text-neutral-900 dark:text-white" placeholder="john@example.com" required />
+                  </div>
+
+                  <div>
+                    <label for="message" class="block text-xs uppercase font-bold tracking-widest text-neutral-400 dark:text-neutral-500 mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" class="w-full bg-neutral-100/50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-apple-blue transition-colors text-neutral-900 dark:text-white resize-none" placeholder="Leave a message..." required></textarea>
+                  </div>
+
+                  <button type="submit" id="submit-btn" class="w-full bg-apple-blue hover:bg-blue-600 text-white font-medium text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 active:scale-[0.98] shadow-md relative overflow-hidden">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span id="submit-btn-text">Send Message</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-neutral-200/40 dark:border-neutral-800/40 bg-neutral-50/50 dark:bg-[#1C1C1E]/10">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400 dark:text-neutral-500 font-light">
+        <div>© 2026 Sadiya Naz. All rights reserved.</div>
+        <div class="flex items-center gap-1">Designed with ❤️ using HTML, CSS & Tailwind CSS</div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="hidden fixed bottom-8 right-8 z-30 p-3 bg-apple-blue hover:bg-blue-600 text-white rounded-full shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95" aria-label="Back to top">
+      <i data-lucide="chevron-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Custom Script -->
+    <script src="./script.js"></script>
+  </body>
+</html>
